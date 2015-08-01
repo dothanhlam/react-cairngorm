@@ -1,7 +1,7 @@
 /**
  * Created by LamDo on 8/1/15.
  */
-Event = Class.extend({
+CairngormEvent = Class.extend({
 
     init: function (type, data) {
         this.type = type;

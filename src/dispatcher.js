@@ -90,5 +90,3 @@ Dispatcher.prototype = {
         return str;
     }
 };
-
-var EventDispatcher = new Dispatcher();

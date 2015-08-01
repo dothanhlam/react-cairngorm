@@ -8,12 +8,14 @@ Command = Class.extend({
     },
 
     execute: function () {
-
+        console.log("execute");
     },
 
     onResult: function () {
+        console.log("onResult");
     },
 
     onFault: function () {
+        console.log("onFault");
     }
 });

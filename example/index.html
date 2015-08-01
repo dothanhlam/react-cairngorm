@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react-cairngorm</title>
+    <script src="../src/class.js"></script>
+    <script src="../src/guid.js"></script>
+
+    <script src="../src/command.js"></script>
+    <script src="../src/dispatcher.js"></script>
+    <script src="../src/event.dispatcher.js"></script>
+    <script src="../src/frontcontroller.js"></script>
+    <script src="../src/event.js"></script>
+    <script src="../src/httpservice.js"></script>
+    <script src="../src/httpservices.js"></script>
+    <script src="../src/model.locator.js"></script>
+    <script src="../src/service.locator.js"></script>
+    <script src="../src/vo.js"></script>
+</head>
+<body>
+    <script>
+        var StartupEvent = CairngormEvent.extend({
+
+            init : function ( type, data ) {
+                this._super(type, data);
+            }
+        });
+        StartupEvent.STARTUP = "startup";
+
+
+        var StartupCommand = Command.extend({
+            execute : function ( ) {
+                console.log("StartupCommand,execute");
+            },
+
+            onResult : function ( response ) {
+                console.log("StartupCommand,onResult", response);
+            },
+
+            onFault : function () {
+                console.log("StartupCommand,onFault");
+            }
+        });
+
+        var Controller = FrontController.extend({
+            init : function () {
+                this._super();
+                this.addCommand(StartupEvent.STARTUP, StartupCommand);
+            }
+
+        });
+
+        var controller = new Controller();
+        new StartupEvent(StartupEvent.STARTUP, true).dispatch();
+    </script>
+</body>
+</html>
