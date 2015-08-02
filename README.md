@@ -1,8 +1,11 @@
 # react-cairngorm
-An idea to bring Cairngorm framework works alongside with ReactJS.
+An idea based on [Babelium project](https://github.com/babeliumproject) to bring Cairngorm framework works alongside with ReactJS.
+
 ![Dependencies Status](https://david-dm.org/dothanhlam/react-cairngorm.svg)
 
 ##About Cairngorm (wiki)
+![Cairngorm] (https://www.safaribooksonline.com/library/view/agile-enterprise-application/9780596514402/httpatomoreillycomsourceoreillyimages553785.png)
+
 Cairngorm is one of the primary open source frameworks for application architecture in Adobe Flex. It was developed by iteration::two, which was acquired by Macromedia in 2005. It is part of the Adobe Engagement Platform. Adobe Labs features Cairngorm as the architectural framework for Rich Internet Application programmers.
 
 Cairngorm is based on the MVC model. It is specifically designed to facilitate complex state and data synchronization between the client and the server, while keeping the programming of the View layer detached from the data implementation.
@@ -27,6 +30,7 @@ grunt build
 
 ##Usage
 
+###Event
 ```
 var StartupEvent = CairngormEvent.extend({
     init : function ( type, data ) {
@@ -35,8 +39,10 @@ var StartupEvent = CairngormEvent.extend({
 });
 //declare constant
 StartupEvent.STARTUP = "startup";
+```
 
-
+###Command
+```
 var StartupCommand = Command.extend({
     execute : function ( ) {
         console.log("StartupCommand,execute");
@@ -50,8 +56,10 @@ var StartupCommand = Command.extend({
         console.log("StartupCommand,onFault");
     }
 });
+```
 
-// front controller
+###Controller
+```
 var Controller = FrontController.extend({
     init : function () {
         this._super();
@@ -59,7 +67,10 @@ var Controller = FrontController.extend({
     }
 
 });
+```
 
+###Integrating
+```
 var controller = new Controller();
 new StartupEvent(StartupEvent.STARTUP, true).dispatch();
 
